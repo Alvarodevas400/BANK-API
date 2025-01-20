@@ -17,6 +17,16 @@
       "RPGLE"
     ]
   },
+
+  {
+    "name": "Create RPGLE Module PCML",
+    "command": "CRTRPGMOD MODULE(&CURLIB/&NAME) SRCSTMF('&RELATIVEPATH') OPTION(*EVENTF) DBGVIEW(*SOURCE) TGTCCSID(*JOB) PGMINFO(*PCML) INFOSTMF('/home/alvarodev/PCML/&NAME.PCML')",
+    "deployFirst": true,
+    "environment": "ile",
+    "extensions": [
+      "RPGLE"
+    ]
+  },
   {
     "name": "Create SQLRPGLE Program",
     "command": "CRTSQLRPGI OBJ(&CURLIB/&NAME) SRCSTMF('&RELATIVEPATH') OPTION(*EVENTF) DBGVIEW(*SOURCE) CLOSQLCSR(*ENDMOD) CVTCCSID(*JOB) COMPILEOPT('TGTCCSID(*JOB)') RPGPPOPT(*LVL2)",

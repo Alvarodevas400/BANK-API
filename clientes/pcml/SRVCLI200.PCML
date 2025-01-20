@@ -1,0 +1,32 @@
+<pcml version="7.0">
+   <!-- RPG module: SRVCLI200  -->
+   <!-- created: 2025-01-20-22.09.33 -->
+   <!-- source: /home/ALVARODEV/builds/BANK-API/clientes/services/SRVCLI200.rpgle -->
+   <!-- 156 -->
+   <struct name="DS_ADFIELDS">
+      <data name="KEY" type="char" length="4" usage="inherit" />
+      <data name="VALUE" type="char" length="200" usage="inherit" />
+   </struct>
+   <!-- 139 -->
+   <struct name="DS_INPREGCLI">
+      <data name="PRIMER_NOMBRE" type="char" length="100" usage="inherit" />
+      <data name="SEGUNDO_NOMBRE" type="char" length="100" usage="inherit" />
+      <data name="PRIMER_APELLIDO" type="char" length="100" usage="inherit" />
+      <data name="SEGUNDO_APELLIDO" type="char" length="100" usage="inherit" />
+      <data name="TIPO_ID" type="char" length="1" usage="inherit" />
+      <data name="IDENTIFICACION" type="char" length="30" usage="inherit" />
+      <data name="EMAIL" type="char" length="50" usage="inherit" />
+      <data name="TELEFONO" type="char" length="10" usage="inherit" />
+      <data name="FECHA_NACIMIENTO" type="zoned" length="8" precision="0" usage="inherit" />
+      <data name="ESTADO_CIVIL" type="char" length="100" usage="inherit" />
+      <data name="INGRESOS_MEN" type="zoned" length="15" precision="2" usage="inherit" />
+      <data name="INGRESOS_FUE" type="char" length="30" usage="inherit" />
+      <data name="LST_CAMPOSADI" type="struct" struct="DS_ADFIELDS" count="20" usage="inherit" />
+   </struct>
+   <!-- 172 -->
+   <program name="REG_CLIENT" entrypoint="REG_CLIENT" returnvalue="integer">
+      <data name="IN_DATCLI" type="struct" struct="DS_INPREGCLI" usage="input" />
+      <data name="OU_CODE" type="zoned" length="9" precision="0" usage="output" />
+      <data name="OU_MESSAGE" type="char" length="200" usage="output" />
+   </program>
+</pcml>
