@@ -1,17 +1,18 @@
 **FREE
+
 Ctl-Opt nomain;
 Ctl-opt debug(*yes);
-ctl-opt bnddir('DSRVCLI000');  
-
+ctl-opt bnddir('DSRVCLI100');  
 //************************************************************
 //  Servicio para obtener informacion de un cliente usando su* 
-//  su codigo                                                *   
+//  identificacion                                           *   
 //************************************************************
 
 //Copys
 
 //Acceso a Base de Datos
 /Copy 'prototypes/Get_bnkclp'
+/Copy 'prototypes/Get_bnkc2p'
 /Copy 'prototypes/Get_bnkpap'
 /Copy 'prototypes/Get_bnkmsp'
 
@@ -19,13 +20,14 @@ ctl-opt bnddir('DSRVCLI000');
 /Copy 'prototypes/helpers/Get_pardsp'
 
 //Programa de Servicio
-/Copy 'prototypes/clientes/services/SRVCLI00P'
+/Copy 'prototypes/clientes/services/SRVCLI10P'
 
-Dcl-Proc Get_clienteByCode export;
-  Dcl-Pi Get_clienteByCode int(10);
-        In_code     zoned(9);
-        Ou_datCli   likeds(DS_OutGetCliente);
-        Ou_Message  char(200);
+Dcl-Proc Get_CliById export;
+  Dcl-Pi Get_CliById int(10);
+        In_TypeId               char(1);
+        In_idNumber             char(30);
+        Ou_datCli               likeds(DS_OutGetCliId);
+        Ou_Message              char(200);
   End-Pi;
 
   //Variables Internas
@@ -50,11 +52,12 @@ Dcl-Proc Get_clienteByCode export;
   clear Ou_Message;
   clear FechaDs;
   
-  error = Val_Entrada(In_code);
+  error = Val_Entrada(In_TypeId: In_idNumber);
   
   if error = 0;
-     error = GET_BNKCLI(In_code:Ou_Result:Ou_Message);
+     error = GET_BNKCL2(In_TypeId:In_idNumber:Ou_Result:Ou_Message);
      if error = 0;
+        Ou_datCli.codigo_cliente = Ou_Result.BKCCOD;
         Ou_datCli.primer_nombre = Ou_Result.BKCFIN;
         Ou_datCli.segundo_nombre = Ou_Result.BKCMDN;
         Ou_datCli.primer_apellido = Ou_Result.BKCFLN;
@@ -106,7 +109,7 @@ return error;
 //Rutina de Error                                         *
 //********************************************************* 
 begsr *PSSR;
-   DUMP 'SRVCLI000';
+   DUMP 'SRVCLI100';
 endsr;
 End-Proc;
 //*********************************************************  
@@ -114,7 +117,8 @@ End-Proc;
 //********************************************************* 
 dcl-proc Val_Entrada;
     dcl-pi Val_Entrada int(10);
-        In_code zoned(9);
+        In_TypeId      char(1);
+        In_idNumber    char(30);    
     end-pi;
 
     //Variables Interna
@@ -123,12 +127,18 @@ dcl-proc Val_Entrada;
 //*********************************************************  
 //Inicio de procedimiento                                  *
 //********************************************************* 
-    if In_code = 0;
-       error = 5; 
-    endif;
+   if In_TypeId <> *blanks;
+      if In_TypeId <> 'C' and
+         In_TypeId <> 'P';  
+         error = 7;
+      endif;   
+   else;
+     error = 6; 
+   endif;
+
+  if In_idNumber = *blanks;
+     error = 8;
+  endif;  
 
 return error;  
 end-proc;
-
-
-
