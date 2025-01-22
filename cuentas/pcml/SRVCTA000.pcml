@@ -1,0 +1,24 @@
+<pcml version="7.0">
+   <!-- RPG module: SRVCTA000  -->
+   <!-- created: 2025-01-22-01.23.23 -->
+   <!-- source: /home/ALVARODEV/builds/BANK-API/cuentas/services/SRVCTA000.rpgle -->
+   <!-- 46 -->
+   <struct name="DS_OUTGETACCOUNT">
+      <data name="CODIGO_CLIENTE" type="zoned" length="9" precision="0" usage="inherit" />
+      <data name="TIPO" type="char" length="100" usage="inherit" />
+      <data name="MONEDA" type="char" length="3" usage="inherit" />
+      <data name="DISPONIBLE" type="zoned" length="15" precision="2" usage="inherit" />
+      <data name="ESTADO" type="char" length="1" usage="inherit" />
+      <data name="AGENCIA" type="char" length="100" usage="inherit" />
+      <data name="OFICIAL" type="char" length="100" usage="inherit" />
+      <data name="FECHA_APERTURA" type="zoned" length="8" precision="0" usage="inherit" />
+      <data name="FECHA_CIERRE" type="zoned" length="8" precision="0" usage="inherit" />
+      <data name="FECHA_ULT_MOV" type="zoned" length="8" precision="0" usage="inherit" />
+   </struct>
+   <!-- 71 -->
+   <program name="GET_INFACC" entrypoint="GET_INFACC" returnvalue="integer">
+      <data name="IN_ACCOUNT" type="zoned" length="11" precision="0" usage="input" />
+      <data name="OU_DATCTA" type="struct" struct="DS_OUTGETACCOUNT" usage="output" />
+      <data name="OU_MESSAGE" type="char" length="200" usage="output" />
+   </program>
+</pcml>

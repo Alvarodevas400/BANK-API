@@ -1,0 +1,19 @@
+<pcml version="7.0">
+   <!-- RPG module: SRVCTA200  -->
+   <!-- created: 2025-01-22-01.23.43 -->
+   <!-- source: /home/ALVARODEV/builds/BANK-API/cuentas/services/SRVCTA200.rpgle -->
+   <!-- 113 -->
+   <struct name="DS_INPSAVACCOUNT">
+      <data name="CODE" type="zoned" length="9" precision="0" usage="inherit" />
+      <data name="TIPO" type="char" length="4" usage="inherit" />
+      <data name="MONEDA" type="char" length="3" usage="inherit" />
+      <data name="AGENCIA" type="char" length="4" usage="inherit" />
+      <data name="OFICIAL" type="char" length="4" usage="inherit" />
+   </struct>
+   <!-- 131 -->
+   <program name="SAV_CUENTA" entrypoint="SAV_CUENTA" returnvalue="integer">
+      <data name="IN_INFCTA" type="struct" struct="DS_INPSAVACCOUNT" usage="input" />
+      <data name="OU_CUENTA" type="zoned" length="11" precision="0" usage="output" />
+      <data name="OU_MESSAGE" type="char" length="200" usage="output" />
+   </program>
+</pcml>

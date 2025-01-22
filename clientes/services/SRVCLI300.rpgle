@@ -24,8 +24,8 @@ Ctl-Opt bnddir('DSRVCLI300');
 //Programa de Servicio
 /Copy 'prototypes/clientes/services/SRVCLI30P'
 
-Dcl-Proc SRVCLI300        export;
-  Dcl-Pi SRVCLI300        int(10);
+Dcl-Proc Act_Client        export;
+  Dcl-Pi Act_Client        int(10);
          In_code          zoned(9);
          In_DatCli        likeds(DS_InpActCli);
          Ou_Message       char(200);
