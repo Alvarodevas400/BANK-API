@@ -1,0 +1,30 @@
+<pcml version="7.0">
+   <!-- RPG module: SRVTRN000  -->
+   <!-- created: 2025-01-24-00.12.01 -->
+   <!-- source: /home/ALVARODEV/builds/BANK-API/transacciones/services/SRVTRN000.rpgle -->
+   <!-- 130 -->
+   <struct name="DS_TRNMOVE">
+      <data name="FECHATRANSAC" type="zoned" length="8" precision="0" usage="inherit" />
+      <data name="HORATRANSAC" type="zoned" length="6" precision="0" usage="inherit" />
+      <data name="VALORTRANSAC" type="zoned" length="15" precision="2" usage="inherit" />
+      <data name="DESCRTRANSAC" type="char" length="100" usage="inherit" />
+      <data name="SIGNOTRANSAC" type="char" length="1" usage="inherit" />
+   </struct>
+   <!-- 125 -->
+   <struct name="DS_OUTLSTTRN">
+      <data name="LST_TRN" type="struct" struct="DS_TRNMOVE" count="20" usage="inherit" />
+   </struct>
+   <!-- 117 -->
+   <struct name="DS_INPLSTTRN">
+      <data name="CUENTA" type="zoned" length="11" precision="0" usage="inherit" />
+      <data name="FECHADESDE" type="zoned" length="8" precision="0" usage="inherit" />
+      <data name="FECHAHASTA" type="zoned" length="8" precision="0" usage="inherit" />
+      <data name="PAGE" type="zoned" length="2" precision="0" usage="inherit" />
+   </struct>
+   <!-- 160 -->
+   <program name="LST_TRANS" entrypoint="LST_TRANS" returnvalue="integer">
+      <data name="IN_DEVCTA" type="struct" struct="DS_INPLSTTRN" usage="input" />
+      <data name="OU_MOVCTA" type="struct" struct="DS_OUTLSTTRN" usage="output" />
+      <data name="OU_MESSAGE" type="char" length="200" usage="output" />
+   </program>
+</pcml>

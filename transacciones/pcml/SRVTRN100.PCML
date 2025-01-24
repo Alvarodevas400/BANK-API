@@ -1,0 +1,37 @@
+<pcml version="7.0">
+   <!-- RPG module: SRVTRN100  -->
+   <!-- created: 2025-01-24-00.12.23 -->
+   <!-- source: /home/ALVARODEV/builds/BANK-API/transacciones/services/SRVTRN100.rpgle -->
+   <!-- 135 -->
+   <struct name="DS_RESREGTRN">
+      <data name="SECUENCIA" type="zoned" length="1" precision="0" usage="inherit" />
+      <data name="ERRORCOD" type="int" length="4" precision="31" usage="inherit" />
+      <data name="ERRORDSC" type="char" length="100" usage="inherit" />
+   </struct>
+   <!-- 119 -->
+   <struct name="DS_OUTREGTRN">
+      <data name="LST_RESPONSE" type="struct" struct="DS_RESREGTRN" count="10" usage="inherit" />
+   </struct>
+   <!-- 124 -->
+   <struct name="DS_REGTRN">
+      <data name="SECUENCIA" type="zoned" length="1" precision="0" usage="inherit" />
+      <data name="TIPO" type="char" length="2" usage="inherit" />
+      <data name="CUENTA" type="zoned" length="11" precision="0" usage="inherit" />
+      <data name="CODTRANSACC" type="char" length="4" usage="inherit" />
+      <data name="DSCTRANSACC" type="char" length="100" usage="inherit" />
+      <data name="AMOTRANSACC" type="zoned" length="15" precision="2" usage="inherit" />
+      <data name="CCYTRANSACC" type="char" length="3" usage="inherit" />
+   </struct>
+   <!-- 112 -->
+   <struct name="DS_INPREGTRN">
+      <data name="REFERENCIA" type="char" length="20" usage="inherit" />
+      <data name="LST_TRANSA" type="struct" struct="DS_REGTRN" count="6" usage="inherit" />
+      <data name="TYPTRANSAC" type="char" length="1" usage="inherit" />
+   </struct>
+   <!-- 168 -->
+   <program name="PROC_TRAN" entrypoint="PROC_TRAN" returnvalue="integer">
+      <data name="IN_TRAINF" type="struct" struct="DS_INPREGTRN" usage="input" />
+      <data name="OU_RESPONSE" type="struct" struct="DS_OUTREGTRN" usage="output" />
+      <data name="OU_MESSAGE" type="char" length="200" usage="output" />
+   </program>
+</pcml>
