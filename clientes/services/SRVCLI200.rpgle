@@ -33,6 +33,7 @@ Dcl-Proc Reg_Client     export;
 
   //Variables Internas
   dcl-s error int(10);  
+  
 
   //*********************************************************  
   //Main                                                    *
@@ -40,7 +41,6 @@ Dcl-Proc Reg_Client     export;
 
   clear Ou_code;
   clear Ou_Message;
-
   error = Val_Entrada(In_DatCli);  
 
   if error = 0;
@@ -108,7 +108,13 @@ dcl-proc Val_Entrada;
    endif;
 
    if error = 0;
-      error = GET_BNKCL2(In_DatCli.tipo_id:In_DatCli.ingresos_fue:
+      if In_DatCli.identificacion = *blanks;
+         error = 8;
+      endif;
+   endif;
+ 
+   if error = 0;
+      error = GET_BNKCL2(In_DatCli.tipo_id:In_DatCli.identificacion:
                          Ou_Bnkcli:Ou_Message); 
       if error = 0;
          error = 18; 
