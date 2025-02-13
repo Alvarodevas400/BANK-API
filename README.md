@@ -43,7 +43,7 @@ Este repositorio cubre las siguientes secciones:
 ## 📖 Cómo Usar Este Repositorio
 1. Clona este repositorio:
    ```sh
-   git clone https://github.com/tu_usuario/BANK-API.git
+   git clone https://github.com/Alvarodevas400/BANK-API.git
    ```
 2. Revisa la carpeta de **resources** para los scripts SQL.
 3. Sigue el orden del temario para avanzar de forma estructurada.
