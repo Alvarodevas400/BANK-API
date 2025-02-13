@@ -33,7 +33,6 @@ Dcl-Proc Reg_Client     export;
 
   //Variables Internas
   dcl-s error int(10);  
-  
 
   //*********************************************************  
   //Main                                                    *

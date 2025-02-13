@@ -35,6 +35,7 @@ Dcl-Proc Lst_Trans      export;
   dcl-s error           int(10);
   dcl-s ni              zoned(3) ;      
 
+
   //Estructura Local
   dcl-ds ReferenceDs qualified;
       ref1     zoned(8) pos(1);
